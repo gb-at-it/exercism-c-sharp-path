@@ -49,3 +49,30 @@ public static class RotationalCipher
         return (alphabetDictionaryCharToInt, alphabetDictionaryIntToChar);
     }
 }
+
+// This iteration is much more compact. Iuses the following feature: char can be manipulated using arithmetic logic.
+public static class RotationalCipher2
+{
+    public static string Rotate(string text, int shiftKey)
+    {
+        var sb = new StringBuilder();
+
+        foreach (char c in text)
+        {
+            if ('a' <= c && c <= 'z')
+            {
+                sb.Append(Convert.ToChar('a' + ((c - 'a' + shiftKey) % 26)));
+            }
+            else if ('A' <= c && c <= 'Z')
+            {
+                sb.Append(Convert.ToChar('A' + ((c - 'A' + shiftKey) % 26)));
+            }
+            else
+            {
+                sb.Append(c);
+            }
+        }
+
+        return sb.ToString();
+    }
+}
